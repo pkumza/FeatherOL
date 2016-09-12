@@ -2,6 +2,8 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Welcome！
   h2 Usage:
   p Use basic HTTP request. Send a GET request to http://radar.pkuos.org:3001/?data=XXXXX
+  p This server will record the data into "logs/AppFeather.log"
+  p Every file contains at most 100KB data. There're at most 10000 files to record these data.

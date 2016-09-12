@@ -13,8 +13,8 @@ log4js.configure({
     {
       type: 'file',
       filename: 'logs/AppFeather.log',
-      maxLogSize: 1024,
-      backups:3,
+      maxLogSize: 102400,
+      backups:10000,
       category: "feather"
     }
   ]
@@ -26,7 +26,7 @@ feather_log = log4js.getLogger("feather")
 router.get('/', function(req, res, next) {
   // console.log(req.query.data);
   feather_log.trace(req.query.data);
-  res.render('index', { title: 'AppFeather' });
+  res.render('index', { title: 'AppFeather 应用の翼' });
 });
 
 router.get('/')
