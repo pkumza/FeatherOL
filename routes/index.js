@@ -3,6 +3,9 @@ var router = express.Router();
 var log4js = require('log4js');
 var fs = require('fs');
 
+if (!fs.existsSync('public')) {
+  fs.mkdirSync('public');
+}
 if (!fs.existsSync('public/logs')) {
   fs.mkdirSync('public/logs');
 }
@@ -16,15 +19,33 @@ log4js.configure({
       maxLogSize: 102400,
       backups:10000,
       category: "feather"
+    },
+    {
+      type: 'file',
+      filename: 'public/logs/post.log',
+      maxLogSize: 102400,
+      backups:10000,
+      category: "post"
     }
   ]
 });
 
 feather_log = log4js.getLogger("feather")
+// Deprecated post_log
+post_log = log4js.getLogger("post")
+
+
+router.post('/',function(req,res){
+  console.log(req.method);
+  var uploading_data=req.body.data;
+  feather_log.trace(uploading_data);
+  res.render('index', { title: 'AppFeather 应用の翼' });
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   // console.log(req.query.data);
+  console.log(req.method);
   feather_log.trace(req.query.data);
   res.render('index', { title: 'AppFeather 应用の翼' });
 });

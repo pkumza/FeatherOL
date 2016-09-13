@@ -3,9 +3,13 @@ extends layout
 block content
   h1= title
   p Uploading Success! Your data has been recorded.
-  h2 Usage:
+  h2 Usage1 GET:
   p Use basic HTTP request. Send a GET request to http://radar.pkuos.org:3001/?data=XXXXX
   p This server will record the data into "logs/AppFeather.log","logs/AppFeather.log.1","logs/AppFeather.log.2"...
   p Every file contains at most 100KB data. There're at most 10000 files to record these data.
+  h2 Usage2 POST:
+  p Use basic HTTP request. Send a POST request to http://radar.pkuos.org:3001/ and put your data in "data" item.
+  p e.g. $.post("http://radar.pkuos.org:3001",{data:"Happy Mart"});
+  p This server will record the data into "logs/AppFeather.log","logs/AppFeather.log.1","logs/AppFeather.log.2"...
   h2 Data Access:
-  a(href="http://radar.pkuos.org:3001/get_data/") http://radar.pkuos.org:3001/get_data/
+  a(href="/get_data/") Get_Data
